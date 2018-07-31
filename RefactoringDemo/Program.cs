@@ -21,8 +21,7 @@ namespace RefactoringDemo
             // Specific operations are genuine parts of the algorithm 
             // Keep these two kinds of operations separate
 
-            IEnumerable<int> factors = new int[]{3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1};
-            IEnumerator<int> factor = factors.GetEnumerator();
+            IEnumerator<int> factor = MultiplyingFactors.GetEnumerator();
 
             foreach (var digit in GetDigitsOf(number))
             {
@@ -33,6 +32,14 @@ namespace RefactoringDemo
             var modulo = sum % 7;                   // 7 = parameter
 
             return modulo;                          // % = domain
+        }
+
+        private static IEnumerable<int> MultiplyingFactors
+        {
+            get
+            {
+                return new int[] { 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1 };
+            }
         }
 
         private static IEnumerable<int> GetDigitsOf(long number)
