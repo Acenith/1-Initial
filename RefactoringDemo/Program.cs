@@ -6,28 +6,22 @@ namespace RefactoringDemo
 {
     internal class Program
     {
-        private static int GetControlDigit(long number)
-        {
-            // Seperate digits
-            // Loop through digits
-            // Multiply every other digit by three
-            // Calculate pondered sum of digits
-            // Take modulo of 7 of the sum
+        // Seperate digits
+        // Loop through digits
+        // Multiply every other digit by three
+        // Calculate pondered sum of digits
+        // Take modulo of 7 of the sum
 
-            // Rule of thumb 
-            // More general operations are the infrastructure 
-            // Specific operations are genuine parts of the algorithm 
-            // Keep these two kinds of operations separate
+        // Rule of thumb 
+        // More general operations are the infrastructure 
+        // Specific operations are genuine parts of the algorithm 
+        // Keep these two kinds of operations separate
 
-            IEnumerable<int> ponderedDigits = GetDigitsOf(number)
-                .Zip(MultiplyingFactors, (a, b) => a * b);
-
-            var sum = ponderedDigits.Sum();
-
-            var modulo = sum % 7;                   // 7 = parameter
-
-            return modulo;                          // % = domain
-        }
+        private static int GetControlDigit(long number) =>
+            GetDigitsOf(number)
+                .Zip(MultiplyingFactors, (a, b) => a * b)
+                .Sum()
+                % 7;
 
         private static IEnumerable<int> MultiplyingFactors
         {
