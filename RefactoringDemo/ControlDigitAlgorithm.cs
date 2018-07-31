@@ -6,9 +6,9 @@ namespace RefactoringDemo
 {
     public class ControlDigitAlgorithm
     {
-        public Func<long, IEnumerable<int>> GetDigitsOf { get; }
-        public IEnumerable<int> MultiplyingFactors { get; }
-        public int Modulo { get; }
+        private Func<long, IEnumerable<int>> GetDigitsOf { get; }
+        private IEnumerable<int> MultiplyingFactors { get; }
+        private int Modulo { get; }
 
         public ControlDigitAlgorithm(Func<long, IEnumerable<int>> digitsOf, IEnumerable<int> multiplyingFactors, int modulo)
         {
