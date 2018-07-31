@@ -19,14 +19,8 @@ namespace RefactoringDemo
             // Specific operations are genuine parts of the algorithm 
             // Keep these two kinds of operations separate
 
-            IEnumerator<int> factor = MultiplyingFactors.GetEnumerator();
-            IList<int> ponderedDigits = new List<int>();
-
-            foreach (var digit in GetDigitsOf(number))
-            {
-                factor.MoveNext();
-                ponderedDigits.Add(digit * factor.Current);
-            }
+            IEnumerable<int> ponderedDigits = GetDigitsOf(number)
+                .Zip(MultiplyingFactors, (a, b) => a * b);
 
             var sum = ponderedDigits.Sum();
 
