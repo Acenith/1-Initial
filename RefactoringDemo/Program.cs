@@ -9,26 +9,37 @@ namespace RefactoringDemo
             var sum = 0;
             var isOddPos = true;
 
-            while (number > 0)
-            {
-                var digit = (int) (number % 10);
+            // Seperate digits
+            // Loop through digits
+            // Multiply every other digit by three
+            // Calculate pondered sum of digits
+            // Take modulo of 7 of the sum
 
-                if (isOddPos)
+            // Rule of thumb 
+            // More general operations are the infrastructure 
+            // Specific operations are genuine parts of the algorithm 
+            // Keep these two kinds of operations separate
+
+            while (number > 0)                      // Infrastructure
+            {
+                var digit = (int) (number % 10);    // Infrastructure
+
+                if (isOddPos)                       // Domain
                 {
-                    sum += 3 * digit;
+                    sum += 3 * digit;               // 3 = parameter
                 }
                 else
                 {
-                    sum += digit;
+                    sum += digit;                   // += * = infrastructure
                 }
 
-                number /= 10;
-                isOddPos = !isOddPos;
+                number /= 10;                       // Infrastructure
+                isOddPos = !isOddPos;               // Domain
             }
 
-            var modulo = sum % 7;
+            var modulo = sum % 7;                   // 7 = parameter
 
-            return modulo;
+            return modulo;                          // % = domain
         }
 
         private static void Main()
