@@ -38,7 +38,12 @@ namespace RefactoringDemo
         {
             get
             {
-                return new int[] { 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1 };
+                int factor = 3;
+                while (true)
+                {
+                    yield return factor;
+                    factor = 4 - factor;
+                }
             }
         }
 
