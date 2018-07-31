@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RefactoringDemo
 {
@@ -7,9 +8,6 @@ namespace RefactoringDemo
     {
         private static int GetControlDigit(long number)
         {
-            var sum = 0;
-            var isOddPos = true;
-
             // Seperate digits
             // Loop through digits
             // Multiply every other digit by three
@@ -22,12 +20,15 @@ namespace RefactoringDemo
             // Keep these two kinds of operations separate
 
             IEnumerator<int> factor = MultiplyingFactors.GetEnumerator();
+            IList<int> ponderedDigits = new List<int>();
 
             foreach (var digit in GetDigitsOf(number))
             {
                 factor.MoveNext();
-                sum += digit * factor.Current;
+                ponderedDigits.Add(digit * factor.Current);
             }
+
+            var sum = ponderedDigits.Sum();
 
             var modulo = sum % 7;                   // 7 = parameter
 
