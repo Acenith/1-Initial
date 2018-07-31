@@ -18,7 +18,8 @@ namespace RefactoringDemo
         // Keep these two kinds of operations separate
 
         private static int GetControlDigit(long number) =>
-            GetDigitsOf(number)
+            number
+                .DigitsFromLowest()
                 .Zip(MultiplyingFactors, (a, b) => a * b)
                 .Sum()
                 % 7;
@@ -34,18 +35,6 @@ namespace RefactoringDemo
                     factor = 4 - factor;
                 }
             }
-        }
-
-        private static IEnumerable<int> GetDigitsOf(long number)
-        {
-            IList<int> digits = new List<int>();
-            while (number > 0)                      // Only infrastructure here in this loop
-            {
-                digits.Add((int)(number & 10));
-                number /= 10;
-            }
-
-            return digits;
         }
 
         private static void Main()
