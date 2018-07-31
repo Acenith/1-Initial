@@ -17,27 +17,10 @@ namespace RefactoringDemo
         // Specific operations are genuine parts of the algorithm 
         // Keep these two kinds of operations separate
 
-        private static IEnumerable<int> MultiplyingFactors
-        {
-            get
-            {
-                int factor = 3;
-                while (true)
-                {
-                    yield return factor;
-                    factor = 4 - factor;
-                }
-            }
-        }
-
         private static void Main()
         {
-            Console.WriteLine(new ControlDigitAlgorithm(x => x.DigitsFromLowest(), MultiplyingFactors, 7)
-                .GetControlDigit(12345));
-
-            Console.WriteLine(new ControlDigitAlgorithm(x => x.DigitsFromHighest(), MultiplyingFactors, 7)
-                .GetControlDigit(12345));
-
+            Console.WriteLine(ControlDigitAlgorithms.ForSalesDepartMent.GetControlDigit(12345));
+            Console.WriteLine(ControlDigitAlgorithms.ForAccountingDepartment.GetControlDigit(12345));
             Console.ReadLine();
         }
     }
