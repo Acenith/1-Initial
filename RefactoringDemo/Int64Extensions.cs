@@ -10,7 +10,7 @@ namespace RefactoringDemo
         {
             do
             {
-                yield return (int)(number & 10);
+                yield return (int)(number % 10);
                 number /= 10;
             } while (number > 0);
         }
