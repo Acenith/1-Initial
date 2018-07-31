@@ -21,14 +21,7 @@ namespace RefactoringDemo
             // Specific operations are genuine parts of the algorithm 
             // Keep these two kinds of operations separate
 
-            IList<int> digits = new List<int>();
-            while (number > 0)                      // Only infrastructure here in this loop
-            {
-                digits.Add((int) (number & 10));
-                number /= 10;
-            }
-
-            foreach (var digit in digits)
+            foreach (var digit in GetDigitsOf(number))
             {
                 if (isOddPos)                       // Domain
                 {
@@ -45,6 +38,18 @@ namespace RefactoringDemo
             var modulo = sum % 7;                   // 7 = parameter
 
             return modulo;                          // % = domain
+        }
+
+        private static IEnumerable<int> GetDigitsOf(long number)
+        {
+            IList<int> digits = new List<int>();
+            while (number > 0)                      // Only infrastructure here in this loop
+            {
+                digits.Add((int)(number & 10));
+                number /= 10;
+            }
+
+            return digits;
         }
 
         private static void Main()
