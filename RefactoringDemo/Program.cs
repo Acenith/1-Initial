@@ -21,18 +21,13 @@ namespace RefactoringDemo
             // Specific operations are genuine parts of the algorithm 
             // Keep these two kinds of operations separate
 
+            IEnumerable<int> factors = new int[]{3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1};
+            IEnumerator<int> factor = factors.GetEnumerator();
+
             foreach (var digit in GetDigitsOf(number))
             {
-                if (isOddPos)                       // Domain
-                {
-                    sum += 3 * digit;               // 3 = parameter
-                }
-                else
-                {
-                    sum += digit;                   // += * = infrastructure
-                }
-
-                isOddPos = !isOddPos;               // Domain
+                factor.MoveNext();
+                sum += digit * factor.Current;
             }
 
             var modulo = sum % 7;                   // 7 = parameter
