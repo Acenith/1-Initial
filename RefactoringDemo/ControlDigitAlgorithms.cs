@@ -14,7 +14,7 @@ namespace RefactoringDemo
         {
             get
             {
-                int factor = 3;
+                var factor = 3;
                 while (true)
                 {
                     yield return factor;
