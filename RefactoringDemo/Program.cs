@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace RefactoringDemo
 {
@@ -20,10 +21,15 @@ namespace RefactoringDemo
             // Specific operations are genuine parts of the algorithm 
             // Keep these two kinds of operations separate
 
-            while (number > 0)                      // Infrastructure
+            IList<int> digits = new List<int>();
+            while (number > 0)                      // Only infrastructure here in this loop
             {
-                var digit = (int) (number % 10);    // Infrastructure
+                digits.Add((int) (number & 10));
+                number /= 10;
+            }
 
+            foreach (var digit in digits)
+            {
                 if (isOddPos)                       // Domain
                 {
                     sum += 3 * digit;               // 3 = parameter
@@ -33,7 +39,6 @@ namespace RefactoringDemo
                     sum += digit;                   // += * = infrastructure
                 }
 
-                number /= 10;                       // Infrastructure
                 isOddPos = !isOddPos;               // Domain
             }
 
