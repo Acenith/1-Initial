@@ -17,12 +17,6 @@ namespace RefactoringDemo
         // Specific operations are genuine parts of the algorithm 
         // Keep these two kinds of operations separate
 
-        private static int GetControlDigit(long number, Func<long, IEnumerable<int>> getDigitsOf, IEnumerable<int> multiplyingFactors, int modulo) =>
-            getDigitsOf(number)
-                .Zip(multiplyingFactors, (a, b) => a * b)
-                .Sum()
-                % modulo;
-
         private static IEnumerable<int> MultiplyingFactors
         {
             get
@@ -38,8 +32,12 @@ namespace RefactoringDemo
 
         private static void Main()
         {
-            Console.WriteLine(GetControlDigit(12345, x => x.DigitsFromLowest(), MultiplyingFactors, 7));
-            Console.WriteLine(GetControlDigit(12345, x => x.DigitsFromHighest(), MultiplyingFactors, 7));
+            Console.WriteLine(new ControlDigitAlgorithm(x => x.DigitsFromLowest(), MultiplyingFactors, 7)
+                .GetControlDigit(12345));
+
+            Console.WriteLine(new ControlDigitAlgorithm(x => x.DigitsFromHighest(), MultiplyingFactors, 7)
+                .GetControlDigit(12345));
+
             Console.ReadLine();
         }
     }
